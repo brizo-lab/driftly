@@ -1,0 +1,46 @@
+# Node modules (dependencias de Node)
+node_modules/
+
+# Archivos de compilación o distribución (si los tienes)
+dist/
+build/
+
+# Archivos de configuración de entorno (pueden contener información sensible)
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+logs/
+
+# Archivos generados por editores (VSCode, IntelliJ, etc.)
+.vscode/
+.idea/
+
+# Archivos del sistema operativo (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Archivos temporales del editor (por ejemplo, archivos de swap de Vim)
+*.swp
+*.swo
+
+# Archivos de configuración del gestor de paquetes (si no quieres subirlos)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Archivos o directorios de caché
+.cache/
+.vite/
+
+# Directorios específicos de test o de pruebas
+test/
+tests/
+
+# Archivos generados por herramientas de desarrollo (ej. Webpack, Babel)
+coverage/

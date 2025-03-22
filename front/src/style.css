@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
+
+
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0 !important; /* 🔥 Esto es clave */
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+body {
+  font-family: "Sora", sans-serif;
+  color: #1d1d1d;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #eee;
+  overflow-x: hidden; /* 🔥 Evita el scroll horizontal */
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 🔥 Asegura que nada se desborde */
+  display: flex;
+  flex-direction: column;
+}
+
+
