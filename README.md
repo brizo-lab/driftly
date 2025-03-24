@@ -9,9 +9,13 @@ Driftly is a web app that humorously suggests the best destinations for digital 
 - **API:** OpenWeather (real-time weather updates)
 - **Responsive Design:** Works across all devices
 
-## 🎭 Visit Driftly [here](https://www.driftly.com)
+## 🎭 Visit Driftly [here](https://www.driftly.me)
 
 ![Alt text](screenshot2.png)
+![Alt text](screenshot.png)
+
+
+https://www.driftly.me
 
 ## 🚀 Features
 
