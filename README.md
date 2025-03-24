@@ -1,6 +1,6 @@
 # DRIFTLY
 
-Driftly is a web app that humorously suggests the best destinations for digital nomads depending on real-time weather conditions. By mimicking a fake agency, Driftly exaggerates the marketing discourse of digital nomad hubs. As a result, remote, or lesser-known places are recommended.
+Driftly is a web app that humorously suggests the best destinations for digital nomads depending on real-time weather conditions. By mimicking a travel agency, Driftly exaggerates the marketing discourse of digital nomad hubs. As a result, remote, or lesser-known places are recommended.
 
 ## 🛠️ Technologies Used
 
