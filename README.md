@@ -11,9 +11,7 @@ Driftly is a web app that humorously suggests the best destinations for digital 
 
 ## 🎭 Visit Driftly [here](https://www.driftly.me)
 
-![Alt text](screenshot2.png)
-![Alt text](screenshot.png)
-
+![Alt text](screenshot.gif)
 
 https://www.driftly.me
 
