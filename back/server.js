@@ -19,46 +19,52 @@ const cities = require("./assets/cities_updated.json");
 let cachedWeatherData = [];
 let lastUpdate = null;
 
-// Función para actualizar los datos de clima
+// Función para actualizar los datos de clima y reintentar si hay 404
 const updateWeatherData = async () => {
   try {
-    // Definir el número máximo de intentos para evitar un ciclo infinito
-    const MAX_ATTEMPTS = 15;
+    const MAX_ATTEMPTS = 12;
     let attempts = 0;
     let foundDestination = false;
-    let weatherResponses = [];
 
     while (attempts < MAX_ATTEMPTS && !foundDestination) {
-      // Selecciona 10 ciudades aleatorias
       const randomCities = cities.sort(() => 0.5 - Math.random()).slice(0, 10);
       console.log("Ciudades seleccionadas:", randomCities);
 
-      weatherResponses = await Promise.all(
-        randomCities.map((city) => {
-          return axios.get(API_URL, {
-            params: {
-              lat: city.latitude,
-              lon: city.longitude,
-              appid: API_KEY,
-              units: "metric",
-            },
-          })
-          .then(response => response.data)
-          .catch(error => {
-            console.error(`Error al obtener el clima para ${city.name}:`, error.message);
-            return null;
-          });
+      let weatherResponses = await Promise.all(
+        randomCities.map(async (city) => {
+          let retries = 0;
+          while (retries < 3) { // Reintenta hasta 3 veces si hay un 404
+            try {
+              const response = await axios.get(API_URL, {
+                params: {
+                  lat: city.latitude,
+                  lon: city.longitude,
+                  appid: API_KEY,
+                  units: "metric",
+                },
+              });
+              return response.data;
+            } catch (error) {
+              if (error.response && error.response.status === 404) {
+                console.warn(`404 Not Found para ${city.name}. Reintentando... (${retries + 1}/3)`);
+                retries++;
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
+              } else {
+                console.error(`Error al obtener el clima para ${city.name}:`, error.message);
+                return null;
+              }
+            }
+          }
+          return null;
         })
       );
 
-      // Filtrar destinos soleados que cumplan con los requisitos
       const filteredDestinations = weatherResponses
         .filter(response => response !== null)
-        .filter(
-          (destination) =>
-            destination.weather[0].main === "Clear" &&
-            destination.main.temp >= 18 &&
-            destination.main.temp <= 25
+        .filter(destination => 
+          destination.weather[0].main === "Clear" &&
+          destination.main.temp >= 18 &&
+          destination.main.temp <= 25
         );
 
       if (filteredDestinations.length > 0) {
@@ -67,7 +73,7 @@ const updateWeatherData = async () => {
         lastUpdate = Date.now();
         console.log("Destinos filtrados:", filteredDestinations);
       } else {
-        attempts++; // Incrementar el número de intentos
+        attempts++;
         console.log(`No sunny destinations found. Attempt ${attempts} of ${MAX_ATTEMPTS}`);
       }
     }
